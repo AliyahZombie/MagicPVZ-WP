@@ -35,6 +35,9 @@ namespace Lawn
         protected override void Reset()
         {
             base.Reset();
+            // my members
+            mIsFrozen = false;
+            // =========
             lastPlayedBodyReanim_Name = string.Empty;
             lastPlayedBodyReanim_Type = ReanimLoopType.PlayOnce;
             lastPlayedBodyReanim_BlendTime = 0;
@@ -121,6 +124,7 @@ namespace Lawn
                     mY -= Constants.ZenGardenGreenhouseOffset.Y;
                 }
             }
+            mIsFrozen = false;
             mAnimCounter = 0;
             mAnimPing = true;
             mFrame = 0;
@@ -546,6 +550,7 @@ namespace Lawn
             {
                 return;
             }
+            if (mIsFrozen) return;
             UpdateAbilities();
             Animate();
             if (mPlantHealth < 0)
@@ -823,6 +828,11 @@ namespace Lawn
             {
                 return;
             }
+            //mIsFrozen = !mIsFrozen;
+            //mBoard.DisplayAdvice(mIsFrozen ? "Freezed" : "Melted", MessageStyle.HintLong, AdviceType.None);
+            DoRowAreaDamage(1000, 0);
+            mBoard.DisplayAdvice("Boom!", MessageStyle.HintLong, AdviceType.None);
+            Die();
             if (mState == PlantState.CobcannonReady && mBoard.mCursorObject.mCursorType == CursorType.Normal)
             {
                 mBoard.RefreshSeedPacketFromCursor();
@@ -5945,5 +5955,7 @@ namespace Lawn
         private byte lastPlayedBodyReanim_BlendTime;
 
         private float lastPlayedBodyReanim_AnimRate;
+
+        public bool mIsFrozen;
     }
 }

@@ -35,6 +35,7 @@ namespace Lawn
             mLinkCredits.mLabel = TodStringFile.TodStringTranslate("[OPTIONS_CREDITS_LINK]");
             mLinkCredits.mUnderlineSize = 1;
             mLinkCredits.mUnderlineOffset = 1;
+            mTestButton = GameButton.MakeButton(13,this,"TEST");
             if (mFromGameSelector)
             {
                 mRestartButton.SetVisible(false);
@@ -94,6 +95,7 @@ namespace Lawn
             AddWidget(mEnableCheat);
             AddWidget(mBackToGameButton);
             AddWidget(mLinkCredits);
+            AddWidget(mTestButton);
             if (mFromGameSelector)
             {
                 AddWidget(mAboutButton);
@@ -114,6 +116,7 @@ namespace Lawn
             RemoveWidget(mBackToGameButton);
             RemoveWidget(mRestartButton);
             RemoveWidget(mLinkCredits);
+            RemoveWidget(mTestButton);
             if (mFromGameSelector)
             {
                 RemoveWidget(mAboutButton);
@@ -345,6 +348,9 @@ namespace Lawn
                 mApp.KillGameSelector();
                 mApp.ShowCreditScreen();
                 return;
+            case 13:
+                mApp.KillNewOptionsDialog();
+                return;
             default:
                 if (theId != 1000)
                 {
@@ -415,6 +421,8 @@ namespace Lawn
         public LawnStoneButton mAboutButton;
 
         public LawnStoneButton mHelpButton;
+
+        public LawnStoneButton mTestButton;
 
         public bool mFromGameSelector;
 

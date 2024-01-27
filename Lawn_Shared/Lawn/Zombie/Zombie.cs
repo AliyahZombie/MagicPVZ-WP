@@ -1732,8 +1732,9 @@ namespace Lawn
             }
             else if (mChilledCounter > 0 || mIceTrapCounter > 0)
             {
+                
                 g.SetColorizeImages(true);
-                g.SetColor(new SexyColor(75, 75, 255, num4));
+                g.SetColor(new SexyColor(225, 75, 75, num4));
                 g.DrawImageMirror(theImage, theDestRect, theSrcRect, flag);
                 g.SetDrawMode(Graphics.DrawMode.DRAWMODE_ADDITIVE);
                 g.DrawImageMirror(theImage, theDestRect, theSrcRect, flag);
